@@ -1,0 +1,24 @@
+
+server:
+  port: 9000
+  
+eureka:
+  instance:
+    hostname: localhost
+
+spring:
+  application:
+    name: Pensioner-Api-Gateway
+  cloud:
+    gateway:
+      routes:
+      - id: claim-microservice
+        uri: http://localhost:9001/
+        predicates:
+        - Path=/claims/**
+      
+      - id: pensioner-service
+        uri: http://localhost:9002/
+        predicates:
+        - Path=/pensionerdetails/** 
+          
